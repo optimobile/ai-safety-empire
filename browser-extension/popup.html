@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProofOf.ai - Deepfake Detector</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 400px;
+      min-height: 500px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .stats {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .scan-section {
+      margin-bottom: 20px;
+    }
+
+    .scan-button {
+      width: 100%;
+      padding: 15px;
+      background: #fff;
+      color: #667eea;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .scan-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .scan-button:active {
+      transform: translateY(0);
+    }
+
+    .scan-button.scanning {
+      background: #fbbf24;
+      color: #78350f;
+    }
+
+    .scan-button.safe {
+      background: #10b981;
+      color: #fff;
+    }
+
+    .scan-button.danger {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .results {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .results.show {
+      display: block;
+    }
+
+    .result-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+    .result-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .result-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .blockchain-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(16, 185, 129, 0.2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 3px solid #fff;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🛡️</div>
+      <h1>ProofOf.ai</h1>
+      <p class="tagline">Deepfake Detection & Blockchain Verification</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-row">
+        <span class="stat-label">JABL Balance</span>
+        <span class="stat-value" id="jabl-balance">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Images Verified</span>
+        <span class="stat-value" id="images-verified">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Deepfakes Found</span>
+        <span class="stat-value" id="deepfakes-found">0</span>
+      </div>
+    </div>
+
+    <div class="scan-section">
+      <button class="scan-button" id="scan-button">
+        <span id="scan-icon">🔍</span>
+        <span id="scan-text">Scan Images on Page</span>
+      </button>
+    </div>
+
+    <div class="results" id="results">
+      <div class="result-item">
+        <div class="result-label">Status</div>
+        <div class="result-value" id="result-status">-</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Confidence</div>
+        <div class="result-value" id="result-confidence">-</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Blockchain</div>
+        <div class="result-value">
+          <span class="blockchain-badge">
+            <span>✓</span>
+            <span id="blockchain-status">Verified</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Powered by <a href="https://aisafety.ai" target="_blank">AI Safety Empire</a></p>
+      <p>Protected by Jabulon's Law</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
