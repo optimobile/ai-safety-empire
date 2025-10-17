@@ -1,0 +1,131 @@
+# ========================================
+# RAILWAY ENVIRONMENT VARIABLES
+# Council of 12 AIs - Production Configuration
+# Project ID: 1f186e98-9c06-4781-afc5-9d08bfaac0fb
+# ========================================
+
+# CORE API CONFIGURATION
+ENVIRONMENT=production
+VERSION=1.0.0
+API_HOST=0.0.0.0
+API_PORT=8000
+
+# DATABASE (Railway PostgreSQL - will be auto-provided)
+# DATABASE_URL will be automatically set by Railway PostgreSQL plugin
+# Format: postgresql://user:password@host:port/database
+
+# REDIS (Railway Redis - will be auto-provided)
+# REDIS_URL will be automatically set by Railway Redis plugin
+# Format: redis://host:port
+
+# JWT AUTHENTICATION
+JWT_SECRET_KEY=ai-safety-empire-production-jwt-secret-2025-secure-key-change-this
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# ========================================
+# COUNCIL OF 12 AIs - LLM API KEYS
+# ========================================
+
+# OpenAI API (GPT-4) - Used by 4 AIs in the Council
+OPENAI_API_KEY=sk-proj-Oc_Ry_Yt6gXBGQGOBG3QhVHg8Gu7qBHBqxnZHpgpzYNfzNdXQT3BlbkFJEjPYW3MJqiLLST9Ry0ckBVlBuOJOJfzLLST9Ry0ckBVlBuOJOJfzL
+
+# Anthropic API (Claude 3 Opus) - Used by 4 AIs in the Council
+ANTHROPIC_API_KEY=sk-ant-api03-qT4L5C_l-MGl4RbWRp2B0M9Az7xWoHOHIKBpDU8t8CcWAuTZMEDu4gs8hqNjEv2ASG9iUsvUCN72KwAQghA3Q-B0lRIAAA
+
+# Google Gemini API (Gemini 2.0 Flash) - Used by 4 AIs in the Council
+GEMINI_API_KEY=$GEMINI_API_KEY
+GOOGLE_AI_API_KEY=$GEMINI_API_KEY
+
+# DeepSeek API (Optional - for future expansion)
+DEEPSEEK_API_KEY=sk-19d003bdd07f4dcf826c78b046565b38
+
+# ========================================
+# BLOCKCHAIN CONFIGURATION
+# ========================================
+
+# Polygon Mumbai Testnet (for testing)
+POLYGON_RPC_URL=https://rpc-mumbai.maticvigil.com
+CHAIN_ID=80001
+
+# Polygon Mainnet (for production - switch when ready)
+# POLYGON_RPC_URL=https://polygon-rpc.com
+# CHAIN_ID=137
+
+# Private Key (IMPORTANT: Generate new wallet for production!)
+# This is a placeholder - you need to generate a new wallet
+PRIVATE_KEY=generate_new_wallet_private_key_without_0x_prefix
+
+# Smart Contract Addresses (fill after deployment)
+CONTRACT_ADDRESS_LOGGER=
+CONTRACT_ADDRESS_GOVERNANCE=
+CONTRACT_ADDRESS_AEGIS=
+CONTRACT_ADDRESS_JABULONCOIN=
+
+# PolygonScan API Key (for contract verification)
+POLYGONSCAN_API_KEY=your_polygonscan_api_key_here
+
+# ========================================
+# PAYMENT & MONETIZATION
+# ========================================
+
+# Stripe API (for JabulonCoin purchases and subscriptions)
+STRIPE_SECRET_KEY=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
+STRIPE_PUBLISHABLE_KEY=pk_live_51RpLbYPJSnRiJXBsPBGNgkG5lIPBf6Eao2Ks6IEEcX3xTrsk2CAc7Ua3bgsynp5xQqwhjDSvmKOQfs0PaPc6ia3q0043elL4bv
+
+# ========================================
+# CORS & SECURITY
+# ========================================
+
+# CORS Origins (add all your frontend domains)
+CORS_ORIGINS=https://councilof.ai,https://proofof.ai,https://asisecurity.ai,https://agisafe.ai,https://suicidestop.ai,https://transparencyof.ai,https://ethicalgovernanceof.ai,https://safetyof.ai,https://accountabilityof.ai,https://biasdetectionof.ai,https://dataprivacyof.ai,https://jabulon.ai
+
+# Allowed Hosts (production domains)
+ALLOWED_HOSTS=councilof.ai,proofof.ai,*.railway.app
+
+# ========================================
+# FEATURE FLAGS
+# ========================================
+
+ENABLE_BLOCKCHAIN=true
+ENABLE_IPFS=false
+ENABLE_EMAIL=false
+ENABLE_COUNCIL_VOTING=true
+
+# ========================================
+# RATE LIMITING & MONITORING
+# ========================================
+
+RATE_LIMIT_PER_MINUTE=60
+LOG_LEVEL=INFO
+PROMETHEUS_PORT=9090
+
+# ========================================
+# EMAIL (Optional - for notifications)
+# ========================================
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+EMAIL_FROM=noreply@councilof.ai
+
+# ========================================
+# IPFS (Optional - for decentralized storage)
+# ========================================
+
+IPFS_HOST=127.0.0.1
+IPFS_PORT=5001
+
+# ========================================
+# NOTES FOR DEPLOYMENT
+# ========================================
+
+# 1. DATABASE_URL and REDIS_URL will be automatically provided by Railway plugins
+# 2. Generate a new blockchain wallet for production using: node blockchain/scripts/generate-wallet.js
+# 3. Deploy smart contracts to Polygon Mumbai testnet and fill in CONTRACT_ADDRESS_* variables
+# 4. Get PolygonScan API key from https://polygonscan.com/apis
+# 5. Update CORS_ORIGINS with your actual frontend domains
+# 6. For production, switch to Polygon Mainnet (CHAIN_ID=137)
+# 7. All API keys above are production-ready for Council of 12 AIs
+

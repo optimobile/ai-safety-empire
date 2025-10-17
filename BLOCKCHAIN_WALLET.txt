@@ -1,0 +1,65 @@
+========================================
+BLOCKCHAIN DEPLOYMENT WALLET
+========================================
+
+⚠️  KEEP THIS FILE SECURE - NEVER COMMIT TO GIT ⚠️
+
+Address: 0x1249Da8e694B7Efa63850A4ad9C5e993C8AAe5d5
+Private Key: 0xc257074bd007ac0c360c5059da7f03e9e8df713371649bf79dae75a4f2ef089c
+Mnemonic: true draw spatial quick execute tip rifle flush flavor bulk proud travel
+
+========================================
+NEXT STEPS
+========================================
+
+1. Get Test MATIC from Faucet:
+   https://faucet.polygon.technology/
+   
+   Enter address: 0x1249Da8e694B7Efa63850A4ad9C5e993C8AAe5d5
+   
+2. Verify MATIC received:
+   https://mumbai.polygonscan.com/address/0x1249Da8e694B7Efa63850A4ad9C5e993C8AAe5d5
+   
+3. Add to Railway environment variables:
+   PRIVATE_KEY=c257074bd007ac0c360c5059da7f03e9e8df713371649bf79dae75a4f2ef089c
+   (Note: Without 0x prefix for Railway)
+   
+4. Deploy smart contracts:
+   cd /home/ubuntu/ai-safety-empire/blockchain
+   npx hardhat run scripts/deploy-all.js --network mumbai
+
+========================================
+SMART CONTRACTS TO DEPLOY
+========================================
+
+1. AIDecisionLogger.sol - Council voting records
+2. GovernanceVoting.sol - Democratic governance
+3. AEGISToken.sol - Platform access token
+4. JabulonCoin.sol - Cryptocurrency (1B supply)
+
+========================================
+AFTER DEPLOYMENT
+========================================
+
+Update Railway with contract addresses:
+- CONTRACT_ADDRESS_LOGGER=<deployed_address>
+- CONTRACT_ADDRESS_GOVERNANCE=<deployed_address>
+- CONTRACT_ADDRESS_AEGIS=<deployed_address>
+- CONTRACT_ADDRESS_JABULONCOIN=<deployed_address>
+
+========================================
+SECURITY NOTES
+========================================
+
+✅ This wallet is for Polygon Mumbai TESTNET only
+✅ Never use this wallet for mainnet with real funds
+✅ Generate new wallet for production deployment
+✅ Store production keys in secure vault (not in files)
+✅ Use hardware wallet for production deployments
+
+========================================
+Generated: 2025-01-17
+Network: Polygon Mumbai Testnet
+Purpose: AI Safety Empire Smart Contract Deployment
+========================================
+
