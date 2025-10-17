@@ -1,0 +1,9 @@
+[phases.setup]
+nixPkgs = ["python311", "pip"]
+
+[phases.install]
+cmds = ["pip install -r standalone-api/requirements.txt"]
+
+[start]
+cmd = "./start.sh"
+
