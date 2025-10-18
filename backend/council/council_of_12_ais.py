@@ -104,7 +104,7 @@ class ClaudeAI(CouncilAI):
         """Analyze decision using Claude"""
         try:
             message = await self.client.messages.create(
-                model="claude-3-opus-20240229",
+                model="claude-3-5-sonnet-latest",
                 max_tokens=500,
                 system=self.system_prompt,
                 messages=[
